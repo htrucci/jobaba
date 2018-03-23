@@ -4,6 +4,7 @@ CRAWLER_TARGET_SERVICE = ['google', 'bing', 'baidu']
 
 CRAWLER_TARGET_SERVICE_FILTER = {
     'google': {'type': 'photo'},
+    'bing': {'type': 'photo'},
     'baidu': {'type': 'static'}
 }
 

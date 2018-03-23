@@ -2,13 +2,17 @@
 from icrawler.builtin import BaiduImageCrawler, BingImageCrawler, GoogleImageCrawler
 import os
 import const
+import util
+
+
+# 기본 폴더 생성
+util.makedir('data')
+util.makedir('redata')
 
 
 # 크롤링 담을 폴더 생성
 for service in const.CRAWLER_TARGET_SERVICE:
-    path = os.path.join(const.FULL_PATH, 'data', service)
-    if not os.path.isdir(path):
-        os.mkdir(path)
+    util.makedir('data', service)
 
 
 # 크롤링
@@ -24,4 +28,4 @@ for service in const.CRAWLER_TARGET_SERVICE:
         elif service == 'bing':
             crawler = BingImageCrawler(storage={'root_dir': path})
 
-        crawler.crawl(keyword=word, filters=const.CRAWLER_TARGET_SERVICE_FILTER[service], offset=0, max_num=1000)
+        crawler.crawl(keyword=word, filters=const.CRAWLER_TARGET_SERVICE_FILTER[service], offset=0, max_num=500)
