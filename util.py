@@ -9,9 +9,13 @@ def makedir(*dirs):
 
 
 def get_image_crop_info(width, height):
-    cent_x = width / 2
-    cent_y = height / 2
-    base = (width if width <= height else height) / 2
-    top = cent_y - base
-    left = cent_x - base
-    return base, top, left
+    if width >= height:
+        base = height
+        top = 0
+        left = (width - base) / 2
+        return base, top, left
+    else:
+        base = width
+        top = (height - base) / 2
+        left = 0
+        return base, top, left

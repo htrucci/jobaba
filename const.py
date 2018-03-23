@@ -10,8 +10,8 @@ CRAWLER_TARGET_SERVICE_FILTER = {
 
 OUTPUT_SIZE = (32, 32)
 
+RESIZE_BASE = 4/3
 
-# FULL_PATH = "C:/Users/201210108/Desktop/working/jobaba/"
 FULL_PATH = os.path.abspath('')
 
 TARGET_WORD = ['strawberry', 'cherry', 'raspberry']

@@ -18,14 +18,26 @@ for service in const.CRAWLER_TARGET_SERVICE:
 # 크롤링
 for service in const.CRAWLER_TARGET_SERVICE:
     for word in const.TARGET_WORD:
-        path = os.path.join(const.FULL_PATH, 'data', service)
+        path = os.path.join(const.FULL_PATH, 'data', service, word)
         crawler = None
 
         if service == 'google':
-            crawler = GoogleImageCrawler(storage={'root_dir': path})
+            crawler = GoogleImageCrawler(
+                feeder_threads=1,
+                parser_threads=2,
+                downloader_threads=4,
+                storage={'root_dir': path})
+        elif service == 'baidu':
+            crawler = BaiduImageCrawler(
+                feeder_threads=1,
+                parser_threads=2,
+                downloader_threads=4,
+                storage={'root_dir': path})
         elif service == 'bing':
-            crawler = BaiduImageCrawler(storage={'root_dir': path})
-        elif service == 'bing':
-            crawler = BingImageCrawler(storage={'root_dir': path})
+            crawler = BingImageCrawler(
+                feeder_threads=1,
+                parser_threads=2,
+                downloader_threads=4,
+                storage={'root_dir': path})
 
-        crawler.crawl(keyword=word, filters=const.CRAWLER_TARGET_SERVICE_FILTER[service], offset=0, max_num=500)
+        crawler.crawl(keyword=word, filters=const.CRAWLER_TARGET_SERVICE_FILTER[service], offset=0, max_num=1000)
