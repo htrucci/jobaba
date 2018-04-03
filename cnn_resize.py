@@ -10,7 +10,7 @@ for fruit_name in fruits:
     if not os.path.isdir(target_resize_dir):
         os.mkdir(target_resize_dir)
     if not os.path.isdir(target_rotate_dir):
-        os.mkdir(target_rotate_dir)        
+        os.mkdir(target_rotate_dir)
     files = glob.glob(image_dir+"*.*")
     print(len(files))
     count = 1;
@@ -28,13 +28,12 @@ for fruit_name in fruits:
         #im.crop((left, top, right, bottom))
         im = ImageOps.fit(im, size, Image.ANTIALIAS, 0, (0.5, 0.5))
         im.save(target_resize_dir+file.split("/")[-1], quality=100)
-        im.rotate(90).save(target_rotate_dir+file.split("/")[-1], quality=100)
+        im.rotate(90).save(target_rotate_dir+"resize_"+file.split("/")[-1], quality=100)
 
         #imageNew = Image.new("RGB", (224, 224))
         #imageNew = im.resize((224, 224), resample=3)
         #im.thumbnail(size, Image.ANTIALIAS)
         #imageNew.paste(image.resize((32, 32), 3))
-        
+
     #im = Image.open("./한라봉/000001.jpg")
     #im.show()
-
